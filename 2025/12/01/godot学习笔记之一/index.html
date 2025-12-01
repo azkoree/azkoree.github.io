@@ -1,0 +1,185 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>GDSrcipt学习笔记之一 | 忘了</title><meta name="author" content="五十七"><meta name="copyright" content="五十七"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="有关变量的一些基础概念和运算">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GDSrcipt学习笔记之一">
+<meta property="og:url" content="http://azkoree.github.io/2025/12/01/godot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E4%B8%80/index.html">
+<meta property="og:site_name" content="忘了">
+<meta property="og:description" content="有关变量的一些基础概念和运算">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://azkoree.github.io/img/avatar.png">
+<meta property="article:published_time" content="2025-12-01T06:28:16.000Z">
+<meta property="article:modified_time" content="2025-12-01T08:15:31.122Z">
+<meta property="article:author" content="五十七">
+<meta property="article:tag" content="GDScript">
+<meta property="article:tag" content="godot">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="游戏开发">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://azkoree.github.io/img/avatar.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "GDSrcipt学习笔记之一",
+  "url": "http://azkoree.github.io/2025/12/01/godot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E4%B8%80/",
+  "image": "http://azkoree.github.io/img/avatar.png",
+  "datePublished": "2025-12-01T06:28:16.000Z",
+  "dateModified": "2025-12-01T08:15:31.122Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "五十七",
+      "url": "http://azkoree.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://azkoree.github.io/2025/12/01/godot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E4%B8%80/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><link rel="stylesheet" href="/css/index.css?v=5.5.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'GDSrcipt学习笔记之一',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><span> 页面</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> 链接</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">忘了</span></a><a class="nav-page-title" href="/"><span class="site-name">GDSrcipt学习笔记之一</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><span> 页面</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><span> 链接</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">GDSrcipt学习笔记之一</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-12-01T06:28:16.000Z" title="发表于 2025-12-01 14:28:16">2025-12-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-01T08:15:31.122Z" title="更新于 2025-12-01 16:15:31">2025-12-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/godot/">godot</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="container post-content" id="article-container"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>总之是我这个零基础新手开始学，请高抬贵手，，</p>
+<h1 id="脚本文件的创建和结构"><a href="#脚本文件的创建和结构" class="headerlink" title="脚本文件的创建和结构"></a>脚本文件的创建和结构</h1><p>选中场景树中的对应节点➡️点击上方的脚本按钮，按默认模板创建</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">extends Node2D</span><br><span class="line"></span><br><span class="line">func _ready():</span><br><span class="line"></span><br><span class="line">  pass;</span><br></pre></td></tr></table></figure>
+
+<p>开头的extends Node2D代表该脚本挂载的节点类型，必须要是该节点本身或父节点的类型，不可为子节点<br>func为定义一个函数的关键字</p>
+<h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><p>使用var来声明一个变量并赋值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var hp = 100;</span><br><span class="line"></span><br><span class="line">print(hp); #将hp的值输出到控制台，显示为100</span><br></pre></td></tr></table></figure>
+
+<h2 id="变量的四则运算"><a href="#变量的四则运算" class="headerlink" title="变量的四则运算"></a>变量的四则运算</h2><p>可对变量进行四则运算，支持使用浮点数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var hp = 100;</span><br><span class="line">hp += 50; #自加，等同于hp = hp + 50</span><br><span class="line"></span><br><span class="line">print(hp) #显示为150</span><br></pre></td></tr></table></figure>
+<p>多个变量运算的情况：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = 3;</span><br><span class="line">var b = 5;</span><br><span class="line">var c = a + b;</span><br><span class="line">print(c); #显示为8</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="变量的类型"><a href="#变量的类型" class="headerlink" title="变量的类型"></a>变量的类型</h2><p>可用字符串来为变量赋值并运算，但只支持加法运算</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var name = &quot;小明&quot;; #注意字符要加双引号</span><br><span class="line">name += &quot;会打篮球&quot;;</span><br><span class="line">print(name); #此时显示为小明会打篮球</span><br></pre></td></tr></table></figure>
+
+<p>也可使用布尔值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var life = true;</span><br><span class="line">print(life); #显示为true</span><br></pre></td></tr></table></figure>
+
+<h2 id="特殊的数值"><a href="#特殊的数值" class="headerlink" title="特殊的数值"></a>特殊的数值</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var a = INF; #代表无限</span><br><span class="line">a += 1000;</span><br><span class="line">print(a); #此时显示为INF，无论如何运算INF都不会改变</span><br><span class="line"></span><br><span class="line">a = NAN; #代表不存在，INF-INF=NAN</span><br><span class="line"></span><br><span class="line">a = null; #代表空数值</span><br><span class="line"></span><br><span class="line">a = PI; #代表圆周率，此时只显示小数点后14位数</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://azkoree.github.io">五十七</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://azkoree.github.io/2025/12/01/godot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E4%B8%80/">http://azkoree.github.io/2025/12/01/godot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E4%B8%80/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://azkoree.github.io" target="_blank">忘了</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/godot/">godot</a><a class="post-meta__tags" href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><a class="post-meta__tags" href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a><a class="post-meta__tags" href="/tags/GDScript/">GDScript</a></div><div class="post-share"><div class="social-share" data-image="/img/avatar.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/12/01/godot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E4%BA%8C/" title="godot学习笔记之二"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">godot学习笔记之二</div></div><div class="info-2"><div class="info-item-1">常量常量自声明后就不可进行更改，由于声明变量的过程是先声明一个空变量，再进行赋值，因此必须在声明时为其赋值，不可为null 1const name = &quot;小明&quot;; 同时，变量和常量都可以在函数之外进行定义，在函数中使用 枚举枚举是常量的另一种表现形式，可看作一组常量。枚举的名称应为英文全大写。 12345enum STATE &#123;  IDLE,  MOVE,  DIED&#125;; 默认情况下，一组枚举中的第一个成员为0，后面每个枚举成员依次加1，可以在初始化直接为其赋值，只能为整数 1234567enum STATE &#123;  IDLE = 100,  MOVE = 90,  DIED #此处没有赋值，所以默认为上一项+1&#125;;print(STATE.DIED) #以这种格式来打印输出枚举成员的数值 强类型变量在声明变量时，可以指定变量的值为指定类型，如果修改为其他类型就会报错 1var hp : int = 100; 可以指定为int（整数）、float（浮点数）、string（字符串）、bool（布尔值）和varient（默认不指...</div></div></div></a><a class="pagination-related" href="/2025/11/30/hello-world/" title="Hello World"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Hello World</div></div><div class="info-2"><div class="info-item-1">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new &quot;My New Post&quot;  More info: Writing Run server1$ hexo server  More info: Server Generate static files1$ hexo generate  More info: Generating Deploy to remote sites1$ hexo deploy  More info: Deployment </div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/12/01/godot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E4%B8%89/" title="godot学习笔记之三"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-01</div><div class="info-item-2">godot学习笔记之三</div></div><div class="info-2"><div class="info-item-1">if、else、elif语句使用if来进行条件判断，若括号内的表达式成立，则执行后面代码块中的命令要注意条件表达式后面的冒号 1234var a= 5;if (a&gt;1):  print(&quot;a大于一&quot;); 若需要在条件不成立的情况下执行另外的命令，就使用else。在不满足条件时，执行else后面代码块的命令。在需要判断其他条件时，使用elif，就会执行elif后代码块的命令，顺序是if - elif - else 12345678910var a = 5;if (a&lt;1):  print(&quot;a小于一&quot;);elif (a==1):  print(&quot;a等于一&quot;);else: #因为条件已经是不满足前面表达式的情况，所以else后面不用跟表达式  print(&quot;a大于一&quot;); 上述例子中，由于a既不满足a&lt;1，也不满足a&#x3D;1，所以会输出“a大于一”。如果将a赋值为1，那么就会输出“a等于一”本质上，对表达式判断后输出的结果为布尔值，true则执行代码块的命令。因此如果直接在表达式内...</div></div></div></a><a class="pagination-related" href="/2025/12/01/godot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E4%BA%8C/" title="godot学习笔记之二"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-01</div><div class="info-item-2">godot学习笔记之二</div></div><div class="info-2"><div class="info-item-1">常量常量自声明后就不可进行更改，由于声明变量的过程是先声明一个空变量，再进行赋值，因此必须在声明时为其赋值，不可为null 1const name = &quot;小明&quot;; 同时，变量和常量都可以在函数之外进行定义，在函数中使用 枚举枚举是常量的另一种表现形式，可看作一组常量。枚举的名称应为英文全大写。 12345enum STATE &#123;  IDLE,  MOVE,  DIED&#125;; 默认情况下，一组枚举中的第一个成员为0，后面每个枚举成员依次加1，可以在初始化直接为其赋值，只能为整数 1234567enum STATE &#123;  IDLE = 100,  MOVE = 90,  DIED #此处没有赋值，所以默认为上一项+1&#125;;print(STATE.DIED) #以这种格式来打印输出枚举成员的数值 强类型变量在声明变量时，可以指定变量的值为指定类型，如果修改为其他类型就会报错 1var hp : int = 100; 可以指定为int（整数）、float（浮点数）、string（字符串）、bool（布尔值）和varient（默认不指...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">脚本文件的创建和结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-number">3.</span> <span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97"><span class="toc-number">3.1.</span> <span class="toc-text">变量的四则运算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.2.</span> <span class="toc-text">变量的类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E7%9A%84%E6%95%B0%E5%80%BC"><span class="toc-number">3.3.</span> <span class="toc-text">特殊的数值</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By 五十七</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.2"></script><script src="/js/main.js?v=5.5.2"></script><div class="js-pjax"></div><script async data-pjax src="/"></script></div></body></html>
