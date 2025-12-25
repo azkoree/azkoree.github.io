@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('/fonts/SourceHanSerifCN-SemiBold-7.otf') format('opentype');  /* otf字体，ttf把format改成truetype */
+  font-weight: normal;
+  font-style: normal;
+}
+
+  /* 设置全局字体 */
+body {
+  font-family: 'MyCustomFont', "Georgia", "Arial", sans-serif;
+  font-size: 16px;
+} 
