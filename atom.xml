@@ -73,13 +73,13 @@
   </entry>
   
   <entry>
-    <title>butterfly主题自带相册功能无法显示的解决方法</title>
+    <title>走近科学，butterfly主题自带相册功能无法显示的解决方法</title>
     <link href="http://azkoree.github.io/posts/3585938121/"/>
     <id>http://azkoree.github.io/posts/3585938121/</id>
     <published>2026-01-11T09:37:40.000Z</published>
-    <updated>2026-01-11T09:53:10.932Z</updated>
+    <updated>2026-01-11T15:18:31.762Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本站使用的butterfly主题自带一个很漂亮的相册功能，但是不知为何，哪怕直接从官方文档复制代码，也无法正常显示图片</p><h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>去github的discussion看了一下，有个人和我的问题一样，我才发现要看f12控制台，报错信息如下（由于我没截图，所以这里借用对方的图，因为一样）</p><p><img src="https://img.57hmpg.top/file/1768124490417_20260111174118318.png"></p><p>主题作者jerry言：</p><blockquote><p>把第一個報錯解決了</p></blockquote><p>去查了这个报错的问题，说是找不到<code>ture</code>这个变量，然后我才终于明白：原来是我以前配置主题的时候，把一些<code>true</code>打错打成<code>ture</code>了</p><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>搜索配置文件，把打成<code>ture</code>的地方全部改回<code>true</code>就行了。。。</p><p><img src="https://img.57hmpg.top/file/1768124762957_f45674a4cd5ffee9a6da0704aa9e6fb6.jpg" alt="最适合本meme的一集"></p><p>吸取教训，报错就看f12，还要注意别打错了，笑死</p><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>另外图库界面终于能用了。即将整理2025作品集，敬请期待</p>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本站使用的butterfly主题自带一个很漂亮的相册功能，但是不知为何，哪怕直接从官方文档复制代码，也无法正常显示图片</p><h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>去github的discussion看了一下，有个人和我的问题一样，我才发现要看f12控制台，报错信息如下（由于我没截图，所以这里借用对方的图，因为一样）</p><p><img src="https://img.57hmpg.top/file/1768124490417_20260111174118318.png"></p><p>主题作者jerry言：</p><blockquote><p>把第一個報錯解決了</p></blockquote><p>去查了这个报错的问题，说是找不到<code>ture</code>这个变量，然后我才终于明白：原来是我以前配置主题的时候，把一些<code>true</code>打错打成<code>ture</code>了</p><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>搜索配置文件，把打成<code>ture</code>的地方全部改回<code>true</code>就行了。。。</p><p><img src="https://img.57hmpg.top/file/1768124762957_f45674a4cd5ffee9a6da0704aa9e6fb6.jpg"></p><p>吸取教训，报错就看f12，自己敲代码还要注意别打错了</p><h2 id="附赠：导航栏显示异常的问题"><a href="#附赠：导航栏显示异常的问题" class="headerlink" title="附赠：导航栏显示异常的问题"></a>附赠：导航栏显示异常的问题</h2><h3 id="具体问题"><a href="#具体问题" class="headerlink" title="具体问题"></a>具体问题</h3><p>之前顶部导航栏一直莫名其妙有一个“页面”项目，怎么删也删不掉，而且“关于”项目总是在靠前的位置，哪怕我在配置文件<code>.config.butterfly.yml</code>修改都不行，但是其他的项目就显示正常</p><h3 id="解决过程-1"><a href="#解决过程-1" class="headerlink" title="解决过程"></a>解决过程</h3><p>文件夹内全局搜索“页面”，发现theme&#x2F;butterfly文件夹里的<code>.config.yml</code>里就写着“页面”和“关于”项目</p><h3 id="解决方法-1"><a href="#解决方法-1" class="headerlink" title="解决方法"></a>解决方法</h3><p>把theme&#x2F;butterfly文件夹里的<code>.config.yml</code>里“页面”和“关于”这两行删了</p><p><img src="https://img.57hmpg.top/file/1768124929990_d745bcb8911f8a3f2e4fe6e65ce04281.jpg"></p><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>另外图库界面终于能用了。即将整理2025作品集，敬请期待</p>]]></content>
     
     
       
