@@ -27,3 +27,26 @@
 
 }
 
+#post {
+  border-radius: 0px;
+  background-color: #e6e9ef;
+  outline-style: dashed;
+  outline-color: #ccd0da;
+
+}
+
+#page {
+  border-radius: 0px;
+  background-color: #e6e9ef;
+  outline-style: dashed;
+  outline-color: #ccd0da;
+
+}
+
+#archive {
+  border-radius: 0px;
+  background-color: #e6e9ef;
+  outline-style: dashed;
+  outline-color: #ccd0da;
+
+}
