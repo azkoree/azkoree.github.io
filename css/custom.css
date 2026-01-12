@@ -4,18 +4,26 @@
   font-display : swap;
 }
 
-
-
-.aside-content {
-  background: rgba(255, 255, 255, 0.9);
+#aside-content>.card-widget {
   border-radius: 0px;
-  padding: 15px;
-  border-radius: unset;
-  outline-style: outset;
-  outline-color: rgb(183, 149, 206);
+  background-color: #e6e9ef;
+  outline-style: dashed;
+  outline-color: #ccd0da;
 }
 
-.recent-post-item {
-    outline-style: outset;
-    outline-color: rgb(183, 149, 206);
+#recent-posts>.recent-post-items .recent-post-item{
+  border-radius: 0px;
+  background-color: #eff1f5;
+    outline-style: dashed;
+  outline-color: #ccd0da;
+
 }
+
+#aside-content > div.sticky_layout > div.card-widget {
+  border-radius: 0px;
+  background-color: #e6e9ef;
+    outline-style: dashed;
+  outline-color: #ccd0da;
+
+}
+
