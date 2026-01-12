@@ -1,0 +1,21 @@
+@font-face{
+  font-family:'source-serif' ;  /* 字体名自定义即可 */
+  src:url('/fonts/Source-Serif.otf'); /* 字体文件路径 */
+  font-display : swap;
+}
+
+
+
+.aside-content {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 0px;
+  padding: 15px;
+  border-radius: unset;
+  outline-style: outset;
+  outline-color: rgb(183, 149, 206);
+}
+
+.recent-post-item {
+    outline-style: outset;
+    outline-color: rgb(183, 149, 206);
+}
