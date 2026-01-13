@@ -7,7 +7,7 @@
 #aside-content>.card-widget {
   border-radius: 0px;
   background: unset;
-  border-bottom: #ccd0da solid 4px  ;
+  border-bottom: #bcc0cc solid 4px  ;
   box-shadow: none;
 }
 
@@ -22,38 +22,36 @@
 #recent-posts>.recent-post-items .recent-post-item{
   border-radius: 0px;
   background-color: #eff1f5;
-  outline-style: dashed;
-  outline-color: #bcc0cc;
   box-shadow: none;
+  border-right: #bcc0cc solid 4px
 }
-
 
 #post {
   border-radius: 0px;
-  background-color: #e6e9ef;
-  outline-style: dashed;
-  outline-color: #ccd0da;
+  background-color: #eff1f5;
+  box-shadow: none;
+
 
 }
 
 #page {
   border-radius: 0px;
-  background-color: #e6e9ef;
-  outline-style: dashed;
-  outline-color: #ccd0da;
+  background-color: #eff1f5;
+  box-shadow: none;
+
 
 }
 
 #archive {
   border-radius: 0px;
-  background-color: #e6e9ef;
-  outline-style: dashed;
-  outline-color: #ccd0da;
+  background-color: #eff1f5;
+  box-shadow: none;
+
 
 }
 
 body {
-  background-color: #dce0e8;
+  background-color: #e6e9ef;
   background-image: 
     linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
