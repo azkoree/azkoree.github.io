@@ -15,7 +15,7 @@
 #aside-content > div.sticky_layout > div.card-widget {
   border-radius: 0px;
   background: unset;
-  border-bottom: #ccd0da solid 4px  ;
+  border-bottom: #bcc0cc solid 4px  ;
   box-shadow: none;
 }
 
@@ -23,7 +23,7 @@
   border-radius: 0px;
   background-color: #eff1f5;
   outline-style: dashed;
-  outline-color: #ccd0da;
+  outline-color: #bcc0cc;
   box-shadow: none;
 }
 
@@ -55,8 +55,8 @@
 body {
   background-color: #dce0e8;
   background-image: 
-    linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
-  background-size: 30px 30px;
+    linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 10px 10px;
   background-position: -1px -1px;
 }
