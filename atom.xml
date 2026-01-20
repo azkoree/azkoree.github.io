@@ -6,7 +6,7 @@
   <link href="http://azkoree.github.io/atom.xml" rel="self"/>
   
   <link href="http://azkoree.github.io/"/>
-  <updated>2026-01-20T06:54:56.983Z</updated>
+  <updated>2026-01-20T09:36:42.581Z</updated>
   <id>http://azkoree.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>自制像素古风极简图块v0.1</title>
+    <link href="http://azkoree.github.io/posts/433349129/"/>
+    <id>http://azkoree.github.io/posts/433349129/</id>
+    <published>2026-01-20T09:17:19.000Z</published>
+    <updated>2026-01-20T09:36:42.581Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>一直想给oc做个游戏，奈何古风素材太难找（要么有点贵，要么用了怕出事），所以不得不自己画。这次更是难得的能画的下去，所以发布一点出来给大家参考（用到自己项目里也行，不过这纯纯半成品真的有人要用吗）</p><h2 id="素材预览和推荐工作流"><a href="#素材预览和推荐工作流" class="headerlink" title="素材预览和推荐工作流"></a>素材预览和推荐工作流</h2><p>快速拼了一个大致的预览，能看就行，还有许多地方需要改进（以及还有不少地方得画，比如围墙之类的）</p><p><img src="https://img.57hmpg.top/file/1768900770447_%E7%B2%BE%E7%81%B5-0003.png"></p><p><strong>推荐工作流：</strong></p><ol><li>直接在aseprite（或其他图像处理软件）中完成，游戏中使用ulds插件（这个插件怎么用这里就不叙述了）。直接用图块拼应该也可以，但地面不同草元素的衔接我暂时搞不定，所以是直接画的。</li><li>新建画布时，宽度和高度设置为图块宽高的整数倍（比如32x32的图块，画布就设置为320x320），方便对齐</li><li>这里以aseprite为例，按下<code>shift+s</code>打开网格对齐模式，然后把房屋、植物图块先摆好，注意优先级</li><li>直接吸色，在最下面新建一个图层画地面，自己做好衔接，可以稍微用一点抖动</li><li>按需邻近放大图快，把不需要的图层隐藏，导出png，放进游戏里调试</li></ol><h2 id="素材下载"><a href="#素材下载" class="headerlink" title="素材下载"></a>素材下载</h2><p>直接右键保存，还没画完所以就不搞网盘下载了<br>规格是16 x 16，按需临近放大（如果你工程是32 x 32就放大两倍，48 x 48就放大三倍）</p><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">完整版</button><button type="button" class="tab">自然植被</button><button type="button" class="tab">人造物</button></div><div class="tab-contents"><div class="tab-item-content active"><p><img src="https://img.57hmpg.top/file/1768901591264_all.png"></p></div><div class="tab-item-content"><p><img src="https://img.57hmpg.top/file/1768901648247_nature.png"></p></div><div class="tab-item-content"><p><img src="https://img.57hmpg.top/file/1768901665117_town.png"></p></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div><h2 id="利用规约"><a href="#利用规约" class="headerlink" title="利用规约"></a>利用规约</h2><p>用在自己的商业&#x2F;非商业项目中都可以，标明出处随意，可以随意进行任何程度的二次加工</p><p>禁止分发&#x2F;倒卖</p><p>（不过真的有人用吗？）</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;</summary>
+      
+    
+    
+    
+    <category term="游戏素材" scheme="http://azkoree.github.io/categories/%E6%B8%B8%E6%88%8F%E7%B4%A0%E6%9D%90/"/>
+    
+    
+    <category term="游戏素材" scheme="http://azkoree.github.io/tags/%E6%B8%B8%E6%88%8F%E7%B4%A0%E6%9D%90/"/>
+    
+    <category term="像素画" scheme="http://azkoree.github.io/tags/%E5%83%8F%E7%B4%A0%E7%94%BB/"/>
+    
+    <category term="图块" scheme="http://azkoree.github.io/tags/%E5%9B%BE%E5%9D%97/"/>
+    
+  </entry>
   
   <entry>
     <title>用mdbook手搓一个自己的在线电子书</title>
