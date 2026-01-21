@@ -1,0 +1,400 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>手把手带你配置VisuMZ全核心插件——Core Engine | 57之塔</title><meta name="author" content="五十七"><meta name="copyright" content="五十七"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#dce0e8"><meta name="description" content="前言不错，这次又是一个大坑，从一个新的空工程开始带你配置VisuMZ系列的全部核心插件，不过作为个人笔记的成分比较多，因为你直接让我进插件汉化说实话太麻烦了，还不如边看边写笔记（ 插件的使用和安装方法默认读者全部都会了，不懂就参考Yanfly.moe Wiki 建议搭配官方范例工程食用 准备工作本教程直接从一个空的工程开始，直接把插件全部倒进来  然后双击插件就能看到茫茫多的参数了，别急，我们一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手把手带你配置VisuMZ全核心插件——Core Engine">
+<meta property="og:url" content="http://azkoree.github.io/posts/893604379/index.html">
+<meta property="og:site_name" content="57之塔">
+<meta property="og:description" content="前言不错，这次又是一个大坑，从一个新的空工程开始带你配置VisuMZ系列的全部核心插件，不过作为个人笔记的成分比较多，因为你直接让我进插件汉化说实话太麻烦了，还不如边看边写笔记（ 插件的使用和安装方法默认读者全部都会了，不懂就参考Yanfly.moe Wiki 建议搭配官方范例工程食用 准备工作本教程直接从一个空的工程开始，直接把插件全部倒进来  然后双击插件就能看到茫茫多的参数了，别急，我们一个">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://azkoree.github.io/img/avatar.png">
+<meta property="article:published_time" content="2026-01-21T02:58:14.000Z">
+<meta property="article:modified_time" content="2026-01-21T04:46:26.637Z">
+<meta property="article:author" content="五十七">
+<meta property="article:tag" content="RPG Maker MZ">
+<meta property="article:tag" content="游戏开发">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://azkoree.github.io/img/avatar.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "手把手带你配置VisuMZ全核心插件——Core Engine",
+  "url": "http://azkoree.github.io/posts/893604379/",
+  "image": "http://azkoree.github.io/img/avatar.png",
+  "datePublished": "2026-01-21T02:58:14.000Z",
+  "dateModified": "2026-01-21T04:46:26.637Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "五十七",
+      "url": "http://azkoree.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://azkoree.github.io/posts/893604379/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1.4/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#292c3c')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#dce0e8')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '手把手带你配置VisuMZ全核心插件——Core Engine',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/nav-menu.css"><style type="text/css">
+.spoiler {
+  display: inline;
+}
+p.spoiler {
+  display: flex;
+}
+.spoiler a {
+  pointer-events: none;
+}
+.spoiler-blur, .spoiler-blur > * {
+  transition: text-shadow .5s ease;
+}
+.spoiler .spoiler-blur, .spoiler .spoiler-blur > * {
+  color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+  text-shadow: 0 0 10px grey;
+  cursor: pointer;
+}
+.spoiler .spoiler-blur:hover, .spoiler .spoiler-blur:hover > * {
+  text-shadow: 0 0 5px grey;
+}
+.spoiler-box, .spoiler-box > * {
+  transition: color .5s ease,
+  background-color .5s ease;
+}
+.spoiler .spoiler-box, .spoiler .spoiler-box > * {
+  color: black;
+  background-color: black;
+  text-shadow: none;
+}</style><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="57之塔" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fa-regular fa-images"></i><span> 画廊</span></a></div><div class="menus_item"><a class="site-page" href="/board/"><i class="fa-fw fa-regular fa-comment-dots"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fa-regular fa-comment"></i><span> 闲聊</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/downloads/"><i class="fa-fw fas fa-link"></i><span> 相关下载</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://doc.57hmpg.top/"><i class="fa-fw fas fa-warehouse"></i><span> 地下室</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/favicon-48x48.png" alt="Logo"><span class="site-name">57之塔</span></a><a class="nav-page-title" href="/"><span class="site-name">手把手带你配置VisuMZ全核心插件——Core Engine</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fa-regular fa-images"></i><span> 画廊</span></a></div><div class="menus_item"><a class="site-page" href="/board/"><i class="fa-fw fa-regular fa-comment-dots"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fa-regular fa-comment"></i><span> 闲聊</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/downloads/"><i class="fa-fw fas fa-link"></i><span> 相关下载</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://doc.57hmpg.top/"><i class="fa-fw fas fa-warehouse"></i><span> 地下室</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">手把手带你配置VisuMZ全核心插件——Core Engine</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-01-21T02:58:14.000Z" title="发表于 2026-01-21 10:58:14">2026-01-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-21T04:46:26.637Z" title="更新于 2026-01-21 12:46:26">2026-01-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E5%B8%A6%E4%BD%A0%E9%85%8D%E7%BD%AEVisuMZ%E6%A0%B8%E5%BF%83%E6%8F%92%E4%BB%B6/">带你配置VisuMZ核心插件</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="container post-content" id="article-container"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>不错，这次又是一个大坑，从一个新的空工程开始带你配置VisuMZ系列的全部核心插件，不过作为个人笔记的成分比较多，因为你直接让我进插件汉化说实话太麻烦了，还不如边看边写笔记（</p>
+<p>插件的使用和安装方法默认读者全部都会了，不懂就参考<a target="_blank" rel="noopener" href="http://www.yanfly.moe/wiki/Main_Page">Yanfly.moe Wiki</a></p>
+<p>建议搭配官方范例工程食用</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>本教程直接从一个空的工程开始，直接把插件全部倒进来</p>
+<p><img src="https://img.57hmpg.top/file/1768965039475_20260121111023629.png"></p>
+<p>然后双击插件就能看到茫茫多的参数了，别急，我们一个一个来配置</p>
+<p><img src="https://img.57hmpg.top/file/1768965123182_20260121111148423.png"></p>
+<h2 id="Quality-of-Life-Setting-游戏体验设置"><a href="#Quality-of-Life-Setting-游戏体验设置" class="headerlink" title="Quality of Life Setting 游戏体验设置"></a>Quality of Life Setting 游戏体验设置</h2><p>光是这一个部分就有这么多可以配置的地方了，别急，一部分一部分来</p>
+<p>加粗部分是我个人建议要注意的设置</p>
+<h3 id="Play-Test-游戏测试"><a href="#Play-Test-游戏测试" class="headerlink" title="Play Test 游戏测试"></a>Play Test 游戏测试</h3><p>这里是游戏测试启动时的设置</p>
+<p>New Game on Boot：是否在游戏测试中自动开始一个新的游戏（就是开一个新档），默认为false</p>
+<p>No Play Test Mode：是否禁用测试模式</p>
+<p>Open Console on Boot：启动时是否打开控制台，其实编辑器里也能设置这个，应该是插件设置的优先级更高</p>
+<p>F6: Toggle Sound：是否开启F6切换静音模式</p>
+<p>F7: Toggle Fast Mode：是否开启F7切换加速模式</p>
+<p>CTRL + n: Quick Load: 是否开启ctrl+数字键快速读档，不算自动存档</p>
+<p>NewGame &gt; CommonEvent：设置游戏测试开始时运行的公共事件</p>
+<h3 id="Battle-Test-战斗测试"><a href="#Battle-Test-战斗测试" class="headerlink" title="Battle Test 战斗测试"></a>Battle Test 战斗测试</h3><p>这里是在编辑器进行战斗测试的设置</p>
+<p>Add Item Type —Add Armor Type：道具、武器和防具每样都给一个</p>
+<p>Added Quantity：如果勾选了Add Item Type，这里是给的数量</p>
+<p>Shift+R: Recover All：对应快捷键完全恢复</p>
+<p>Shift+T: Full TP：回满TP</p>
+<h3 id="Digit-Grouping数字分组"><a href="#Digit-Grouping数字分组" class="headerlink" title="Digit Grouping数字分组"></a>Digit Grouping数字分组</h3><p>就是类似于1234567 ➡️ 1,234,567这样的</p>
+<p>Standard Text：就是输出的标准字符</p>
+<p>Ex Text：通过drawTextEx输出的标准字符（比如对话框之类的）</p>
+<p>Damage Sprites、Gauge Sprite：伤害数字和血条数字</p>
+<p>可以设置这些地方是否要用数字分组</p>
+<p><strong>Country Locale</strong>：使用对应国家地区的分组方法，比如咱们是zh-cn，那就是四个为一组</p>
+<h3 id="Player-Benefit-游玩优化"><a href="#Player-Benefit-游玩优化" class="headerlink" title="Player Benefit 游玩优化"></a>Player Benefit 游玩优化</h3><p>一系列优化玩家游玩体验的设置</p>
+<p>最小遇敌率：由于rm的暗雷系统比较狂野，所以可能刚遇敌后走了两步又来一个，这里可以设置玩家暗雷遇敌需要的最少步数</p>
+<p><strong>Escape Alway</strong>：只要允许玩家逃跑，那么逃跑率永远为100%，无视速度之类的属性</p>
+<p><strong>Accuracy Formula</strong>：设置为visu的命中率公式，具体自己看插件。总之用就对了</p>
+<p><strong>Boost Accuracy</strong>：提高命中和闪避，用就对了</p>
+<p><strong>Level Up - Full HP&#x2F;MP</strong>：升级自动回满血</p>
+<h3 id="Picture-Related-图片相关"><a href="#Picture-Related-图片相关" class="headerlink" title="Picture-Related 图片相关"></a>Picture-Related 图片相关</h3><p><strong>Anti-Zoom Picture</strong>：避免图片被拉伸缩放导致图片质量下降</p>
+<p>Picture Containers：在战斗和地图场景，是否将图片容器与SpriteSet分离，保持默认就行了</p>
+<h3 id="Misc-杂项"><a href="#Misc-杂项" class="headerlink" title="Misc 杂项"></a>Misc 杂项</h3><p>Ani：Mirror Offset：动画使用镜像效果时（这个在动画的注释里设置），是否将动画的x坐标也进行镜像</p>
+<p>Auto-Stretch：是否自动拉伸游戏画面来匹配窗口大小，保持默认就行了</p>
+<p>Font Shadows：用文字投影效果来代替原先的轮廓线效果</p>
+<p>Font Smoothing：开启文字平滑（说实话感觉像素字体用这个没什么用。。）</p>
+<p><strong>Font Width Fix</strong>：修复非半角字符可能会有的一些bug，开就对了</p>
+<p><strong>Key Item Protection</strong>：保护关键道具不被卖出</p>
+<p><strong>Map Name Text Code</strong>：启用后，地图名称也可以使用控制符（就是\c[2]这种）</p>
+<p><strong>Modern Controls</strong>：可以使用Home&#x2F;End键，开就对了</p>
+<p>MV Animation Rate：使用MV格式创建动画时，动画播放的速率，默认为4，数字越低越快</p>
+<p>NewGamer &gt; CommonEvent：新游戏开始时自动运行的公共事件，<strong>不限于游戏测试环境</strong></p>
+<p><strong>No Tile Shadows</strong>：关闭编辑器自动生成的图块阴影</p>
+<p><strong>Pixel Image Rendering</strong>：像素游戏必备，开启像素渲染</p>
+<p>Require focus：游戏窗口不在最前时暂停运行</p>
+<p>Shortcut Script：不懂，过，这里贴一下原文档的解释</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">  Shortcut Scripts:</span><br><span class="line"> - Enables shortcut-based script variables and functions that can be used</span><br><span class="line">   for script calls.</span><br><span class="line"> - Shortcut list enabled for this is as follows:</span><br><span class="line"> </span><br><span class="line">$commonEvent(id)</span><br><span class="line">   - Queues a common event.</span><br><span class="line">   - This does not interrupt the current event to run the desired common</span><br><span class="line">     event. Any queued common events will run after the current event list</span><br><span class="line">     has finished.</span><br><span class="line">   - Replace &#x27;id&#x27; with the ID of the common event you wish to queue.</span><br><span class="line">   - Common events only run in the map scene and battle scene.</span><br><span class="line"></span><br><span class="line">   $onceParallel(id)</span><br><span class="line">   - Runs a common event in the background as a once parallel event.</span><br><span class="line">   - Once parallel events will run in the background like a parallel</span><br><span class="line">     process, except that it does not repeat after finishing.</span><br><span class="line">   - Replace &#x27;id&#x27; with the ID of the common event you wish to run.</span><br><span class="line">   - Only works in the map scene and battle scene. Battle scene usage will</span><br><span class="line">     require VisuMZ_1_BattleCore.</span><br><span class="line"></span><br><span class="line">   $scene</span><br><span class="line">   - Returns current scene.</span><br><span class="line"></span><br><span class="line">   $spriteset</span><br><span class="line">   - Returns current scene&#x27;s spriteset if there is one.</span><br><span class="line"></span><br><span class="line">   $subject</span><br><span class="line">   - Returns last recorded identity of the battle&#x27;s subject/user.</span><br><span class="line"></span><br><span class="line">   $targets</span><br><span class="line">   - Returns last recorded targets marked in battle.</span><br><span class="line"></span><br><span class="line">   $target</span><br><span class="line">   - Returns last recorded target marked in battle.</span><br><span class="line">   - If multiple targets are recorded, then the first of the recorded</span><br><span class="line">     targets will be set for this variable.</span><br><span class="line">   - Works better with VisuMZ_1_BattleCore.</span><br><span class="line"></span><br><span class="line">   $event</span><br><span class="line">   - Returns currently initiated map event.</span><br></pre></td></tr></table></figure>
+
+<p><strong>Smart Event Collision</strong>：让事件只会和与优先级”和玩家同层“的东西碰撞，开就对了</p>
+<p>Subfolder Name Purge：开着就对了</p>
+<h2 id="Battle-System-战斗系统"><a href="#Battle-System-战斗系统" class="headerlink" title="Battle System 战斗系统"></a>Battle System 战斗系统</h2><p>设置使用的战斗系统，如果用了visu付费的战斗系统就要用这个设置，没有的话放着就行</p>
+<h2 id="Color-Setting-颜色设置"><a href="#Color-Setting-颜色设置" class="headerlink" title="Color Setting 颜色设置"></a>Color Setting 颜色设置</h2><p>设置游戏里各种东西的颜色，包括血条等等，这里也可以不急着弄</p>
+<p>**注意！**如果想关掉outline，直接改mz自己的js是行不通的（因为被这个插件覆盖了），需要在这一项找到Alpha Color - Windows Font Outline，把最后一个数字改成0（也就是不透明度为0），就等于是关闭描边了</p>
+<h2 id="Gold-Setting-金钱设置"><a href="#Gold-Setting-金钱设置" class="headerlink" title="Gold Setting 金钱设置"></a>Gold Setting 金钱设置</h2><p>对游戏内金钱进行设置，分别是：最大值、字体大小、图标、占位符（就是当金钱太多窗口显示不下的时候显示的文本）</p>
+<p>Item Style：像绘制道具一样来绘制金钱（就是可以有图标、标签和值），总之开就对了</p>
+<h2 id="Image-Loading-加载图片"><a href="#Image-Loading-加载图片" class="headerlink" title="Image Loading 加载图片"></a>Image Loading 加载图片</h2><p>在游戏启动时就进行预加载的图片，按需配置，一般没什么高要求的话就不用管了</p>
+<h2 id="Keyboard-Input-键盘输入"><a href="#Keyboard-Input-键盘输入" class="headerlink" title="Keyboard Input 键盘输入"></a>Keyboard Input 键盘输入</h2><p><strong>WASD Movement</strong>：使用wasd来进行移动，这个按需设置就行</p>
+<p>R Button：Dash Toggle：用R键来切换始终冲刺的状态</p>
+<p><strong>Name Input</strong>，有关输入名称界面的功能</p>
+<ul>
+<li>Enable？：是否启用</li>
+<li>Default Mode：默认的输入模式，用键盘或者用默认的方式（不过键盘输入似乎只能输英文）</li>
+<li>QWERTY Layout：如果用默认输入模式，就将字母表按键盘的布局显示</li>
+<li>Keyboard Message：在输入框中显示的文本（就是类似请输入文本这样的）</li>
+<li>Banned Words：禁止词，应该没人用这个吧。。。</li>
+</ul>
+<p>Number Input：可以在输入数字的时候使用键盘，不过只支持英语输入法</p>
+<p>Button Assist：在一些界面上方显示的按钮说明</p>
+<ul>
+<li>Finish Entry，Page Change, Switch To Keyboard, Switch to Manual</li>
+<li>不太懂，总之先不管也行吧。。</li>
+</ul>
+<h2 id="Menu-Background-Settings-菜单背景设置"><a href="#Menu-Background-Settings-菜单背景设置" class="headerlink" title="Menu Background Settings 菜单背景设置"></a>Menu Background Settings 菜单背景设置</h2><p>设置在菜单背景显示的图片</p>
+<h2 id="Menu-Button-Assist-Window-按钮说明设置"><a href="#Menu-Button-Assist-Window-按钮说明设置" class="headerlink" title="Menu Button Assist Window 按钮说明设置"></a>Menu Button Assist Window 按钮说明设置</h2><p>设置按钮说明的显示，这里就不说明了，因为我一般都是直接关了的。。</p>
+<p>另外也可以适配手柄</p>
+<h2 id="Menu-Layout-Settings-菜单布局设置"><a href="#Menu-Layout-Settings-菜单布局设置" class="headerlink" title="Menu Layout Settings 菜单布局设置"></a>Menu Layout Settings 菜单布局设置</h2><p>可以分别对菜单的各Scene进行设置，有把握的可以试试，我一般也不管。。</p>
+<h2 id="Parameter-Setting-参数设置"><a href="#Parameter-Setting-参数设置" class="headerlink" title="Parameter Setting 参数设置"></a>Parameter Setting 参数设置</h2><p>设置游戏里的各种数值</p>
+<p><strong>Displayed Parameters</strong>：在游戏中显示的属性</p>
+<p>Extended Parameters：在visu插件中显示的其他属性</p>
+<p>Show Actor Levels？在游戏中大部分地方显示角色的等级</p>
+<p>Convert JS To Base：不懂，过</p>
+<p>HP Crisis Rate：HP低到这里设置的比例后进入危机状态</p>
+<p>JS Formula：过</p>
+<p><strong>Parameter Caps</strong>：分别设置角色和敌人各属性值的上限</p>
+<p>X Parameter：对应编辑器里的追加能力值，下面是设置这些属性在游戏里显示的词汇，看不懂的缩写可以参考</p>
+<p>S Parameter：对应特殊能力值</p>
+<p>Icon：在各个能力值前绘制的图标，当然我都是直接不启用的</p>
+<h2 id="Custom-Parameters-自定义参数"><a href="#Custom-Parameters-自定义参数" class="headerlink" title="Custom Parameters 自定义参数"></a>Custom Parameters 自定义参数</h2><p>这里可以设置一些自定义的在游戏中显示的参数，这里自己参考着来吧，不过其实也不用管</p>
+<p>因为这里的参数只能靠游戏内的数值（比如角色攻击、防御之类的）计算出来，基本上是只能看，没法直接来进行计算，所以感觉有点鸡肋，也可能是我不会用</p>
+<h2 id="Screen-Resolution-Setting-屏幕分辨率设置"><a href="#Screen-Resolution-Setting-屏幕分辨率设置" class="headerlink" title="Screen Resolution Setting 屏幕分辨率设置"></a>Screen Resolution Setting 屏幕分辨率设置</h2><p>基本上放着就行，要设置分辨率就在编辑器里弄就行</p>
+<h2 id="Screen-Shake-Setting-屏幕震动设置"><a href="#Screen-Shake-Setting-屏幕震动设置" class="headerlink" title="Screen Shake Setting 屏幕震动设置"></a>Screen Shake Setting 屏幕震动设置</h2><p>可以给屏幕震动设置不同的效果，这个也是放着就行了。。</p>
+<h2 id="Title-Command-List-标题指令列表"><a href="#Title-Command-List-标题指令列表" class="headerlink" title="Title Command List 标题指令列表"></a>Title Command List 标题指令列表</h2><p>在标题画面显示的指令，不动也行，或者也可以加一个跳转到自己的网站之类的</p>
+<h2 id="Title-Picture-Button-标题图片按钮"><a href="#Title-Picture-Button-标题图片按钮" class="headerlink" title="Title Picture Button 标题图片按钮"></a>Title Picture Button 标题图片按钮</h2><p>在标题画面显示的图片按钮，可以代替上一项中的指令使用</p>
+<p>不过甚至可以在标题右下角显示跳转sns的图标，可以上wiki自己去找找教程</p>
+<h2 id="UI-Setting-UI设置"><a href="#UI-Setting-UI设置" class="headerlink" title="UI Setting UI设置"></a>UI Setting UI设置</h2><p>对UI进行设置</p>
+<p>UI Area</p>
+<ul>
+<li>Fade Speed：淡出淡入的速度</li>
+<li>Box Margin：外边距</li>
+<li>Command Window Width：指令窗口的宽度</li>
+<li>Bottom Help Window：按键说明窗口启用，我一般是直接关了的</li>
+<li>Right Aligned Menus：启用右对齐菜单，关掉的话就在左边</li>
+<li>Show Buttons：选择是否在屏幕直接显示取消、菜单、翻页和数字按钮，基本是给移动端用的</li>
+</ul>
+<p>Button Area Height：按钮空间高度</p>
+<p>Bottom Button：让按钮放到底部</p>
+<p>Side Button：将按钮放到UI侧边</p>
+<p>State Icon Non-Frame：不懂，放着</p>
+<p>Level - EXP Gauge：在等级下面画一个经验条</p>
+<p>Parameter Arrorw：放着就行</p>
+<p>Text Code Support：设置在技能名和角色昵称是否可以用文本控制符</p>
+<h2 id="Window-Settings-窗口设置"><a href="#Window-Settings-窗口设置" class="headerlink" title="Window Settings 窗口设置"></a>Window Settings 窗口设置</h2><p>对游戏内设置的窗口进行设置。我已经力竭了，懒得打原文了，你们自己对照着看吧。。</p>
+<p><strong>Defaults</strong></p>
+<ul>
+<li>Enable Masking：启用窗口遮挡（但是启用的话会导致窗口内容被挡住，所以还是关着吧）</li>
+<li>correct skin bleed：窗口皮肤出血线，开着就行</li>
+<li>line height： 行高</li>
+<li>item padding：内边距</li>
+<li>Back opacity：背景透明度</li>
+<li>Translucent Opacity：半透明窗口的透明度</li>
+<li>Window opening speed：窗口打开速度</li>
+<li>column spacing：选择窗口的默认列间距</li>
+<li>row spacing：选择窗口的行间距</li>
+</ul>
+<p><strong>scroll bar</strong></p>
+<ul>
+<li>show scroll bar？是否显示滚动条</li>
+<li>thickness：厚度</li>
+<li>offset：滚动条偏移量</li>
+<li>bar body color：滚动条颜色</li>
+<li>off bar color：滚动条背景颜色</li>
+<li>off bar color：背景透明度</li>
+</ul>
+<p><strong>Selectable Items</strong></p>
+<ul>
+<li>show background？：显示背景</li>
+<li>item height padding：垂直方向的内间距</li>
+<li>JS：draw background：过</li>
+</ul>
+<p><strong>text poup window</strong></p>
+<ul>
+<li>duration per text：每个文本增加的持续时间</li>
+<li>minimum duration：最小持续时间</li>
+<li>maximum duration：最大持续时间</li>
+</ul>
+<h2 id="JS-：Quick-Function-快捷JS函数"><a href="#JS-：Quick-Function-快捷JS函数" class="headerlink" title="JS ：Quick Function 快捷JS函数"></a>JS ：Quick Function 快捷JS函数</h2><p>可以在这里设置能够在工程里快捷使用的JS函数，我不会用，就不管了。。。 </p>
+<h2 id="系列文章"><a href="#系列文章" class="headerlink" title="系列文章"></a>系列文章</h2><ol class="series-items"><li><a href="/posts/893604379/" title="手把手带你配置VisuMZ全核心插件——Core Engine">手把手带你配置VisuMZ全核心插件——Core Engine</a></li></ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://azkoree.github.io">五十七</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://azkoree.github.io/posts/893604379/">http://azkoree.github.io/posts/893604379/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://azkoree.github.io" target="_blank">57之塔</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><a class="post-meta__tags" href="/tags/RPG-Maker-MZ/">RPG Maker MZ</a></div><div class="post-share"><div class="social-share" data-image="/img/avatar.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/posts/433349129/" title="自制像素古风极简图块v0.1"><img class="cover" src="https://img.57hmpg.top/file/1768900770447_精灵-0003.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">自制像素古风极简图块v0.1</div></div><div class="info-2"><div class="info-item-1">前言一直想给oc做个游戏，奈何古风素材太难找（要么有点贵，要么用了怕出事），所以不得不自己画。这次更是难得的能画的下去，所以发布一点出来给大家参考（用到自己项目里也行，不过这纯纯半成品真的有人要用吗） 素材预览和推荐工作流快速拼了一个大致的预览，能看就行，还有许多地方需要改进（以及还有不少地方得画，比如围墙之类的）  推荐工作流：  直接在aseprite（或其他图像处理软件）中完成，游戏中使用ulds插件（这个插件怎么用这里就不叙述了）。直接用图块拼应该也可以，但地面不同草元素的衔接我暂时搞不定，所以是直接画的。 新建画布时，宽度和高度设置为图块宽高的整数倍（比如32x32的图块，画布就设置为320x320），方便对齐 这里以aseprite为例，按下shift+s打开网格对齐模式，然后把房屋、植物图块先摆好，注意优先级 直接吸色，在最下面新建一个图层画地面，自己做好衔接，可以稍微用一点抖动 按需邻近放大图快，把不需要的图层隐藏，导出png，放进游戏里调试  素材下载直接右键保存，还没画完所以就不搞网盘下载了规格是16 x 16，按需临近放大（如果你工程是32 x 32就放大两...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/1968364585/" title="RMXP脚本教程1 - 图片标题"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-05</div><div class="info-item-2">RMXP脚本教程1 - 图片标题</div></div><div class="info-2"><div class="info-item-1">前言这是我看RyanBern的rmxp脚本教程做的笔记，发在这只是用来督促自己。因为我自己是零基础，所以有些用词不够专业，记的也有些乱七八糟，请各位高抬贵手如果要学的话，建议还是自己去看大大的视频教程 [toc] 显示标题图片生成和释放图片scene_title类处理标题画面在“生成标题图形”处生成标题的文字图片，使用显示图片的命令25行后： 12345# 显示标题文字图片@sprite1 = Sprite.new #新建一个Sprite@sprite1.bitmap = RPG::Cache.title(&quot;Title-Words.png&quot;) #载入这张图片@sprite2 = Sprite.new@sprite2.bitmap = RPG::Cache.title(&quot;Title-Subwords.png&quot;) sprite是用于显示图片的类 在使用图片过后，需要进行释放90行后： 1234@sprite1.bitmap.dispose # 释放位图@sprite1.dispose #释放精灵本身@sprite2.bitmap.dispose...</div></div></div></a><a class="pagination-related" href="/posts/3508884452/" title="【转载】RGSS1脚本入门参考之二"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-08</div><div class="info-item-2">【转载】RGSS1脚本入门参考之二</div></div><div class="info-2"><div class="info-item-1">本想在一篇文章里全部发完，但是它太长了编辑器有点卡，只能再开一篇 第4章节：窗口的使用接下来我们终于要学习窗口和精灵了，这我想也是大家特别想知道的。因为在这之前，我们都是同抽象的数据打交道，难免有些枯燥，那么在这一章，我们就要把我们自己脑中所想，全部展现在画面中。下面我们就开始吧。 4.1  窗口的使用4.1.1各种概念在最开始，我们要明白一个窗口到底是什么，它到底有哪些属性。因此，我们必须要先介绍下面几个类。 ①rect：矩形的类顾名思义，这个类表示矩形，但这种东西是不能直接显示出来的。矩形是一种基本的类，它的作用在很多高级的类中体现尤其明显。矩形有四个属性，x坐标，y坐标，宽度，高度。其中x坐标和y坐标是相对而言的。 ②viewport：视口的类这个类是一个比较难理解的类，我在最开始也没明白这是什么东西。在屏幕上生成可见的对象都必须要指定视口viewport。简单说来，你面前有一堵墙，墙上有一个窗户可以看到墙对面的东西，那么这个窗户就可以类比成视口，你只能看到视口内有的东西，视口之外，即使有内容存在，你是看不到的。 我们举个简单的例子，大家打开脚本编辑器，在Window_Ba...</div></div></div></a><a class="pagination-related" href="/posts/591900421/" title="【转载】RGSS1脚本入门参考"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-08</div><div class="info-item-2">【转载】RGSS1脚本入门参考</div></div><div class="info-2"><div class="info-item-1">57自己想说的话对于学习rgss1很有帮助，是先前的RMXP脚本教程的作者RyanBern所写。我怕它随时成为lostmedia，所以我把它转载过来。侵删原文完成于2014.7.5，以下开始为原文内容。原帖链接：https://rpg.blue/forum.php?mod=viewthread&amp;tid=335455&amp;extra=&amp;authorid=356383&amp;page=1  写在前面一位论坛的朋友和我说，他看过很多RMXP脚本的教程，但是感觉没得到什么帮助，脚本也总写不好。我想这也是很多论坛朋友的共同问题吧，想自己弄个脚本，却无从下手；想看教程，却一头雾水（尤其是游戏里面的F1，感觉要有一定的基础才能理解最主要的部分）。这些天在论坛里面逛了逛，有不少尝试着自制脚本的朋友，但写出的脚本却总也通不过。我也看到了一些朋友写的代码，不得不说，代码中很多错误都是源于对教程的误解和对范例脚本（也就是游戏默认的脚本）的错误移植，游戏默认内置脚本其实是个很好的参考，但是如果不加分析胡乱利用一通，当然是不行的。于是我想到写下这个帖子，帮助那些渴望写出自己脚本的朋友...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Quality-of-Life-Setting-%E6%B8%B8%E6%88%8F%E4%BD%93%E9%AA%8C%E8%AE%BE%E7%BD%AE"><span class="toc-text">Quality of Life Setting 游戏体验设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Play-Test-%E6%B8%B8%E6%88%8F%E6%B5%8B%E8%AF%95"><span class="toc-text">Play Test 游戏测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Battle-Test-%E6%88%98%E6%96%97%E6%B5%8B%E8%AF%95"><span class="toc-text">Battle Test 战斗测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Digit-Grouping%E6%95%B0%E5%AD%97%E5%88%86%E7%BB%84"><span class="toc-text">Digit Grouping数字分组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Player-Benefit-%E6%B8%B8%E7%8E%A9%E4%BC%98%E5%8C%96"><span class="toc-text">Player Benefit 游玩优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Picture-Related-%E5%9B%BE%E7%89%87%E7%9B%B8%E5%85%B3"><span class="toc-text">Picture-Related 图片相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-%E6%9D%82%E9%A1%B9"><span class="toc-text">Misc 杂项</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Battle-System-%E6%88%98%E6%96%97%E7%B3%BB%E7%BB%9F"><span class="toc-text">Battle System 战斗系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Color-Setting-%E9%A2%9C%E8%89%B2%E8%AE%BE%E7%BD%AE"><span class="toc-text">Color Setting 颜色设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Gold-Setting-%E9%87%91%E9%92%B1%E8%AE%BE%E7%BD%AE"><span class="toc-text">Gold Setting 金钱设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Image-Loading-%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87"><span class="toc-text">Image Loading 加载图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Keyboard-Input-%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5"><span class="toc-text">Keyboard Input 键盘输入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Menu-Background-Settings-%E8%8F%9C%E5%8D%95%E8%83%8C%E6%99%AF%E8%AE%BE%E7%BD%AE"><span class="toc-text">Menu Background Settings 菜单背景设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Menu-Button-Assist-Window-%E6%8C%89%E9%92%AE%E8%AF%B4%E6%98%8E%E8%AE%BE%E7%BD%AE"><span class="toc-text">Menu Button Assist Window 按钮说明设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Menu-Layout-Settings-%E8%8F%9C%E5%8D%95%E5%B8%83%E5%B1%80%E8%AE%BE%E7%BD%AE"><span class="toc-text">Menu Layout Settings 菜单布局设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Parameter-Setting-%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE"><span class="toc-text">Parameter Setting 参数设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Custom-Parameters-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%82%E6%95%B0"><span class="toc-text">Custom Parameters 自定义参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Screen-Resolution-Setting-%E5%B1%8F%E5%B9%95%E5%88%86%E8%BE%A8%E7%8E%87%E8%AE%BE%E7%BD%AE"><span class="toc-text">Screen Resolution Setting 屏幕分辨率设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Screen-Shake-Setting-%E5%B1%8F%E5%B9%95%E9%9C%87%E5%8A%A8%E8%AE%BE%E7%BD%AE"><span class="toc-text">Screen Shake Setting 屏幕震动设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Title-Command-List-%E6%A0%87%E9%A2%98%E6%8C%87%E4%BB%A4%E5%88%97%E8%A1%A8"><span class="toc-text">Title Command List 标题指令列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Title-Picture-Button-%E6%A0%87%E9%A2%98%E5%9B%BE%E7%89%87%E6%8C%89%E9%92%AE"><span class="toc-text">Title Picture Button 标题图片按钮</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UI-Setting-UI%E8%AE%BE%E7%BD%AE"><span class="toc-text">UI Setting UI设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Window-Settings-%E7%AA%97%E5%8F%A3%E8%AE%BE%E7%BD%AE"><span class="toc-text">Window Settings 窗口设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JS-%EF%BC%9AQuick-Function-%E5%BF%AB%E6%8D%B7JS%E5%87%BD%E6%95%B0"><span class="toc-text">JS ：Quick Function 快捷JS函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0"><span class="toc-text">系列文章</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-color: #ccd0da;"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 五十七</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.2"></script><script src="/js/main.js?v=5.5.2"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1.4/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://57com.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = (el = document, path = location.pathname) => {
+    twikoo.init({
+      el: el.querySelector('#twikoo-wrap'),
+      envId: 'https://57com.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      },
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    
+
+    isShuoshuo && (window.shuoshuoComment.destroyTwikoo = () => {
+      if (el.children.length) {
+        el.innerHTML = ''
+        el.classList.add('no-comment')
+      }
+    })
+  }
+
+  const loadTwikoo = (el, path) => {
+    if (typeof twikoo === 'object') setTimeout(() => init(el, path), 0)
+    else btf.getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.44/dist/twikoo.all.min.js').then(() => init(el, path))
+  }
+
+  if (isShuoshuo) {
+    'Twikoo' === 'Twikoo'
+      ? window.shuoshuoComment = { loadComment: loadTwikoo }
+      : window.loadOtherComment = loadTwikoo
+    return
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async data-pjax src="/"></script></div></body></html>
