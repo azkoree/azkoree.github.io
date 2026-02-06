@@ -6,7 +6,7 @@
   <link href="http://azkoree.github.io/atom.xml" rel="self"/>
   
   <link href="http://azkoree.github.io/"/>
-  <updated>2026-01-24T12:52:00.640Z</updated>
+  <updated>2026-02-06T02:21:12.924Z</updated>
   <id>http://azkoree.github.io/</id>
   
   <author>
@@ -15,6 +15,64 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>画图块的心得分享【0】准备篇</title>
+    <link href="http://azkoree.github.io/posts/2660057038/"/>
+    <id>http://azkoree.github.io/posts/2660057038/</id>
+    <published>2026-02-06T02:03:16.000Z</published>
+    <updated>2026-02-06T02:21:12.924Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>好吧，于是我又返工美术了，这次写一些东西来记录一下图块的绘制过程之类的，如果有精力也会再写一些别的东西，比如行走图之类的</p><p>在开始前，先介绍一下绘画软件和游戏引擎，aseprite和tiled+rmmz</p><h2 id="Aseprite"><a href="#Aseprite" class="headerlink" title="Aseprite"></a>Aseprite</h2><p>最基本的软件操作方法就不说了，这里稍微介绍一下一些用到的功能</p><h3 id="隐藏选区边缘"><a href="#隐藏选区边缘" class="headerlink" title="隐藏选区边缘"></a>隐藏选区边缘</h3><p>我自己会用魔棒选择特定区域来进行刻画，但是选区的蚂蚁线太烦人了，所以可以在顶部菜单栏的<strong>视图</strong>项目来隐藏选区边缘</p><p><img src="https://img.57hmpg.top/file/1770343755725_image-20260206100859260.png" alt="image-20260206100859260"></p><p>不过取消了这个选区，再选新的选区，就还是会显示蚂蚁线，所以建议是绑个快捷键</p><h3 id="平铺模式"><a href="#平铺模式" class="headerlink" title="平铺模式"></a>平铺模式</h3><p>画四方连续图块的神，同样是在<strong>视图</strong>中开启，就会在图像周围显示一圈可以实时更新的图像，方便随时检查图块衔接</p><p><img src="https://img.57hmpg.top/file/1770343830946_image-20260206101015102.png" alt="image-20260206101015102"></p><p><img src="https://img.57hmpg.top/file/1770343936466_image-20260206101210916.png" alt="image-20260206101210916"></p><h3 id="描边"><a href="#描边" class="headerlink" title="描边"></a>描边</h3><p>这个描边指的是快捷键为shift+o的描边，比较智能，还可以自定义描边的样式（只描左右两边或者只描上下等等），我自己偷懒会用</p><p><img src="https://img.57hmpg.top/file/1770343850399_image-20260206101042687.png" alt="image-20260206101042687"></p><h2 id="RMMZ"><a href="#RMMZ" class="headerlink" title="RMMZ"></a>RMMZ</h2><p>我用的是rmmz，用其他引擎的请自便</p><h3 id="素材规格"><a href="#素材规格" class="headerlink" title="素材规格"></a>素材规格</h3><p>在软件界面按一下F1，有惊喜</p><p>所以这里不展开讲了，不过我们要用到插件支持，可以用TileD来画地图，对素材规格就没有特别大的限制，这里也顺便粗略介绍一下用法</p><h3 id="TileD插件"><a href="#TileD插件" class="headerlink" title="TileD插件"></a>TileD插件</h3><p>在这里下载插件的范例工程<a href="https://visustella.itch.io/tiledpluginmz">Tiled Plugin for RPG Maker MZ by VisuStella, VisuStellaMZ, Archeia</a></p><p>先在编辑器安装并启用插件，这两个必需插件都需要，注意顺序</p><p><img src="https://img.57hmpg.top/file/1770344113579_image-20260206101508519.png" alt="image-20260206101508519"></p><p>然后在游戏的目录下新建一个maps文件夹（和工程文件同级），这里用来存放TileD保存的地图文件和图块集文件，这时候项目文件夹里的内容大概是这样</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">project</span><br><span class="line"> - audios</span><br><span class="line"> - data</span><br><span class="line"> - ...</span><br><span class="line"> - js</span><br><span class="line"> - maps</span><br><span class="line"> - movies</span><br><span class="line"> - save</span><br><span class="line"> - ...</span><br><span class="line"> </span><br></pre></td></tr></table></figure><p>然后把图块素材放进一般用的&#x2F;graphics&#x2F;tilesets文件夹</p><p>前面说过这个插件对素材的规格没有硬性要求，随便怎么排都行，只要别超过1024x1024就行</p><p><img src="https://img.57hmpg.top/file/1770344356036_image-20260206101911085.png" alt="image-20260206101911085"></p><p><a href="http://www.mapeditor.org/">Tiled | Flexible level editor</a></p><p>安装好TileD打开，选择新建图块集</p><p><img src="https://img.57hmpg.top/file/1770344401317_image-20260206101954281.png" alt="image-20260206101954281"></p><p>直接选择你的图块集图片，调好格子尺寸</p><p><img src="https://img.57hmpg.top/file/1770344479506_image-20260206102014471.png" alt="image-20260206102014471"></p><p>然后弹出来一个选择保存位置的窗口，保存在刚才新建的maps文件夹里就行，不过还是建议在这个文件夹里面再新建一个tilesets文件夹来放图块集文件，来把两者区分开</p><p><strong>注意：图块集文件和后面的地图文件，文件格式必须为json！可能默认后缀名是.tsj，直接改成.json就行</strong></p><p>然后新建地图，或者直接复制一份范例工程里的模板，保存到maps文件夹里，<strong>文件名必须为mapid.json，id为编辑器里对应的地图编号，前面不用补零！比如：map2.json，这样就行</strong></p><p>没有意外的话，在这个文件编辑好地图后，就能直接在游戏里看到了。这里只是一个简单的设置步骤，关于TileD使用方法，和TileDMZ插件的使用方法，还请自己参考文档</p><p>做好准备工作后，下一篇就可以开始画了</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;</summary>
+      
+    
+    
+    
+    <category term="游戏素材" scheme="http://azkoree.github.io/categories/%E6%B8%B8%E6%88%8F%E7%B4%A0%E6%9D%90/"/>
+    
+    
+    <category term="RMMZ" scheme="http://azkoree.github.io/tags/RMMZ/"/>
+    
+    <category term="游戏素材" scheme="http://azkoree.github.io/tags/%E6%B8%B8%E6%88%8F%E7%B4%A0%E6%9D%90/"/>
+    
+    <category term="图块" scheme="http://azkoree.github.io/tags/%E5%9B%BE%E5%9D%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>rmmz/mv的侧视图绘制经验</title>
+    <link href="http://azkoree.github.io/posts/62803760/"/>
+    <id>http://azkoree.github.io/posts/62803760/</id>
+    <published>2026-01-30T15:16:20.000Z</published>
+    <updated>2026-02-06T02:07:04.536Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>一个自己的绘制rmmz&#x2F;mv规格的侧视战斗图的经验，以及使用</p><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="了解素材规格"><a href="#了解素材规格" class="headerlink" title="了解素材规格"></a>了解素材规格</h3><p>在mz按一下f1就能看到官方对素材规格的说明</p><p><img src="https://img.57hmpg.top/file/1769786454536_image-20260130232015917.png" alt="image-20260130232015917"></p><p>该说的都在上面了，自己看</p><p>比较值得注意的有三点：</p><ul><li>前进和普通动作这两个疑似有些歧义，实际在游戏里“前进”为待机动作和普通攻击跳到敌人面前的动作，“普通攻击”是在回合制战斗中，选择角色普攻后显示的动作（因为我用atb战斗，所以这个动作其实可以忽略，或者借这个地方来放其他需要的动作，action sequence可以指定播放某一个动作）</li></ul><p><img src="https://img.57hmpg.top/file/1769791052266_image-20260131003710290.png" alt="待机动作"></p><p><img src="https://img.57hmpg.top/file/1769791126397_image-20260131003829354.png" alt="选择普通攻击指令后，选择下一个队友的行动，此时前一个人的动作变为普通攻击的准备动作"></p><ul><li>每个图案的最小尺寸为64x64，但不是硬性要求这个尺寸，只要整张图能平均水平分为9块、垂直分为6块就可以正常使用</li><li>哪些动作无限循环，这个在<code>/js/rmmz_sprites.js</code>里可以找到</li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 动作 */</span></span><br><span class="line"><span class="title class_">Sprite</span>_Actor.<span class="property">MOTIONS</span> = &#123;</span><br><span class="line">    <span class="attr">walk</span>: &#123; <span class="attr">index</span>: <span class="number">0</span>, <span class="attr">loop</span>: <span class="literal">true</span> &#125;,  <span class="comment">// 行走 </span></span><br><span class="line">    <span class="attr">wait</span>: &#123; <span class="attr">index</span>: <span class="number">1</span>, <span class="attr">loop</span>: <span class="literal">true</span> &#125;,  <span class="comment">// 待机 </span></span><br><span class="line">    <span class="attr">chant</span>: &#123; <span class="attr">index</span>: <span class="number">2</span>, <span class="attr">loop</span>: <span class="literal">true</span> &#125;,  <span class="comment">// 吟唱 </span></span><br><span class="line">    <span class="attr">guard</span>: &#123; <span class="attr">index</span>: <span class="number">3</span>, <span class="attr">loop</span>: <span class="literal">true</span> &#125;,  <span class="comment">// 防御 </span></span><br><span class="line">    <span class="attr">damage</span>: &#123; <span class="attr">index</span>: <span class="number">4</span>, <span class="attr">loop</span>: <span class="literal">false</span> &#125;,  <span class="comment">// 受伤 </span></span><br><span class="line">    <span class="attr">evade</span>: &#123; <span class="attr">index</span>: <span class="number">5</span>, <span class="attr">loop</span>: <span class="literal">false</span> &#125;,  <span class="comment">// 躲避 </span></span><br><span class="line">    <span class="attr">thrust</span>: &#123; <span class="attr">index</span>: <span class="number">6</span>, <span class="attr">loop</span>: <span class="literal">false</span> &#125;,  <span class="comment">// 突刺 </span></span><br><span class="line">    <span class="attr">swing</span>: &#123; <span class="attr">index</span>: <span class="number">7</span>, <span class="attr">loop</span>: <span class="literal">false</span> &#125;,  <span class="comment">// 挥舞 </span></span><br><span class="line">    <span class="attr">missile</span>: &#123; <span class="attr">index</span>: <span class="number">8</span>, <span class="attr">loop</span>: <span class="literal">false</span> &#125;,  <span class="comment">// 飞行道具 </span></span><br><span class="line">    <span class="attr">skill</span>: &#123; <span class="attr">index</span>: <span class="number">9</span>, <span class="attr">loop</span>: <span class="literal">false</span> &#125;,  <span class="comment">// 技能 </span></span><br><span class="line">    <span class="attr">spell</span>: &#123; <span class="attr">index</span>: <span class="number">10</span>, <span class="attr">loop</span>: <span class="literal">false</span> &#125;,  <span class="comment">// 魔法 </span></span><br><span class="line">    <span class="attr">item</span>: &#123; <span class="attr">index</span>: <span class="number">11</span>, <span class="attr">loop</span>: <span class="literal">false</span> &#125;,  <span class="comment">// 物品 </span></span><br><span class="line">    <span class="attr">escape</span>: &#123; <span class="attr">index</span>: <span class="number">12</span>, <span class="attr">loop</span>: <span class="literal">true</span> &#125;,  <span class="comment">// 逃跑 </span></span><br><span class="line">    <span class="attr">victory</span>: &#123; <span class="attr">index</span>: <span class="number">13</span>, <span class="attr">loop</span>: <span class="literal">true</span> &#125;,  <span class="comment">// 胜利 </span></span><br><span class="line">    <span class="attr">dying</span>: &#123; <span class="attr">index</span>: <span class="number">14</span>, <span class="attr">loop</span>: <span class="literal">true</span> &#125;,  <span class="comment">// 频死 </span></span><br><span class="line">    <span class="attr">abnormal</span>: &#123; <span class="attr">index</span>: <span class="number">15</span>, <span class="attr">loop</span>: <span class="literal">true</span> &#125;,  <span class="comment">// 状态异常 </span></span><br><span class="line">    <span class="attr">sleep</span>: &#123; <span class="attr">index</span>: <span class="number">16</span>, <span class="attr">loop</span>: <span class="literal">true</span> &#125;,  <span class="comment">// 睡眠 </span></span><br><span class="line">    <span class="attr">dead</span>: &#123; <span class="attr">index</span>: <span class="number">17</span>, <span class="attr">loop</span>: <span class="literal">true</span> &#125;  <span class="comment">// 死亡 </span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>行走和待机动作可能合并到左上角那个去了，不管</p><h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><p>我要用action sequence，所以我用visu的battle core，不会影响侧视图的规格</p><p>可惜这个插件不只是帧数扩展，如果想要帧数扩展的话，可以去rpg.blue搜全动画战斗，不过不兼容visu</p><p>visu的action sequence impact插件也可以直接通过精灵表来播放动画，可以直接覆盖大部分一次性动作的战斗图，不过他要钱</p><p>还是别给自己上工作量了吧……</p><h2 id="绘制"><a href="#绘制" class="headerlink" title="绘制"></a>绘制</h2><p>以待机图为例：</p><p><img src="https://img.57hmpg.top/file/1769788002391_image-20260130234631593.png" alt="image-20260130234631593"></p><p>按照1-2-3-2的顺序来播放，所以差不多是原位-向下1px-再向下1px这样，直接移动原图就行了</p><p>绘制主要就是靠自己画了，我也不知道有啥好说的，那么画就完了。。。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;h2 id=&quot;简介&quot;&gt;&lt;</summary>
+      
+    
+    
+    
+    <category term="游戏开发" scheme="http://azkoree.github.io/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"/>
+    
+    <category term="RMMZ" scheme="http://azkoree.github.io/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/RMMZ/"/>
+    
+    
+    <category term="游戏开发" scheme="http://azkoree.github.io/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"/>
+    
+    <category term="RMMZ" scheme="http://azkoree.github.io/tags/RMMZ/"/>
+    
+    <category term="游戏素材" scheme="http://azkoree.github.io/tags/%E6%B8%B8%E6%88%8F%E7%B4%A0%E6%9D%90/"/>
+    
+  </entry>
   
   <entry>
     <title>用visustella来自定义技能消耗</title>
@@ -51,7 +109,7 @@
     <link href="http://azkoree.github.io/posts/433349129/"/>
     <id>http://azkoree.github.io/posts/433349129/</id>
     <published>2026-01-20T09:17:19.000Z</published>
-    <updated>2026-01-20T09:43:42.803Z</updated>
+    <updated>2026-02-06T02:06:56.483Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>一直想给oc做个游戏，奈何古风素材太难找（要么有点贵，要么用了怕出事），所以不得不自己画。这次更是难得的能画的下去，所以发布一点出来给大家参考（用到自己项目里也行，不过这纯纯半成品真的有人要用吗）</p><h2 id="素材预览和推荐工作流"><a href="#素材预览和推荐工作流" class="headerlink" title="素材预览和推荐工作流"></a>素材预览和推荐工作流</h2><p>快速拼了一个大致的预览，能看就行，还有许多地方需要改进（以及还有不少地方得画，比如围墙之类的）</p><p><img src="https://img.57hmpg.top/file/1768900770447_%E7%B2%BE%E7%81%B5-0003.png"></p><p><strong>推荐工作流：</strong></p><ol><li>直接在aseprite（或其他图像处理软件）中完成，游戏中使用ulds插件（这个插件怎么用这里就不叙述了）。直接用图块拼应该也可以，但地面不同草元素的衔接我暂时搞不定，所以是直接画的。</li><li>新建画布时，宽度和高度设置为图块宽高的整数倍（比如32x32的图块，画布就设置为320x320），方便对齐</li><li>这里以aseprite为例，按下<code>shift+s</code>打开网格对齐模式，然后把房屋、植物图块先摆好，注意优先级</li><li>直接吸色，在最下面新建一个图层画地面，自己做好衔接，可以稍微用一点抖动</li><li>按需邻近放大图快，把不需要的图层隐藏，导出png，放进游戏里调试</li></ol><h2 id="素材下载"><a href="#素材下载" class="headerlink" title="素材下载"></a>素材下载</h2><p>直接右键保存，还没画完所以就不搞网盘下载了<br>规格是16 x 16，按需临近放大（如果你工程是32 x 32就放大两倍，48 x 48就放大三倍）</p><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">完整版</button><button type="button" class="tab">自然植被</button><button type="button" class="tab">人造物</button></div><div class="tab-contents"><div class="tab-item-content active"><p><img src="https://img.57hmpg.top/file/1768902218244_all.png"></p></div><div class="tab-item-content"><p><img src="https://img.57hmpg.top/file/1768901648247_nature.png"></p></div><div class="tab-item-content"><p><img src="https://img.57hmpg.top/file/1768901665117_town.png"></p></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div><h2 id="利用规约"><a href="#利用规约" class="headerlink" title="利用规约"></a>利用规约</h2><p>用在自己的商业&#x2F;非商业项目中都可以，标明出处随意，可以随意进行任何程度的二次加工</p><p>禁止分发&#x2F;倒卖</p><p>（不过真的有人用吗？）</p>]]></content>
     
@@ -68,9 +126,9 @@
     
     <category term="游戏素材" scheme="http://azkoree.github.io/tags/%E6%B8%B8%E6%88%8F%E7%B4%A0%E6%9D%90/"/>
     
-    <category term="像素画" scheme="http://azkoree.github.io/tags/%E5%83%8F%E7%B4%A0%E7%94%BB/"/>
-    
     <category term="图块" scheme="http://azkoree.github.io/tags/%E5%9B%BE%E5%9D%97/"/>
+    
+    <category term="像素画" scheme="http://azkoree.github.io/tags/%E5%83%8F%E7%B4%A0%E7%94%BB/"/>
     
   </entry>
   
