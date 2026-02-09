@@ -7,47 +7,20 @@
 /*侧边栏样式*/
 
 #aside-content>.card-widget {
-  border-radius: 0px;
-  background: rgb(239, 241, 245, 0.4);
+  background: rgba(255, 255, 255, 0.9);
   box-shadow: none;  
-  border-top: #bcc0cc solid 6px
 }
 
 
 #aside-content > div.sticky_layout > div.card-widget {
-  border-radius: 0px;
-  background: rgb(239, 241, 245, 0.4);
+  background: rgba(255, 255, 255, 0.9);
   box-shadow: none;
-  border-top: #bcc0cc solid 6px
 }
 
 /* 文章列表样式 */
 
 #recent-posts>.recent-post-items .recent-post-item{
-  border-radius: 0px;
-  background-color: #eff1f5;
-  box-shadow: none;
-  border-right: #bcc0cc solid 4px
-}
-
-/* 页面样式 */
-
-#post {
-  border-top: #bcc0cc solid 8px;
-  border-radius: 0px;
-  background-color: #eff1f5;
-  box-shadow: none;
-}
-
-#page {
-  border-radius: 0px;
-  background-color: #eff1f5;
-  box-shadow: none;
-}
-
-#archive {
-  border-radius: 0px;
-  background-color: #eff1f5;
+  background-color: #ffffff;
   box-shadow: none;
 }
 
