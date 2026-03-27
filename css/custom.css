@@ -42,13 +42,13 @@ body {
 
 /* 导航栏居中 */
 
-#nav .menus_items {
+/* #nav .menus_items {
     position: absolute;
     width: fit-content;
     left: 50%;
     top: 10%;
     transform: translateX(-50%);
-}
+} */
 
 /* 去掉导航栏横线 */
 
@@ -56,11 +56,15 @@ body {
     background-color: transparent!important;
 }
 
-#nav .menus_items .menus_item:hover .menus_item_child{
+/* #nav .menus_items .menus_item:hover .menus_item_child{
   display: flex;
-}
+} */
 
 /* 这里的2是代表导航栏的第二个元素，即有子菜单的元素，可以按自己需求修改 */
-.menus_items .menus_item:nth-child(2) .menus_item_child {
+/* .menus_items .menus_item:nth-child(2) .menus_item_child {
     left: -50px;
 }
+
+.menus_items .menus_item:nth-child(7) .menus_item_child {
+    left: -50px;
+} */
