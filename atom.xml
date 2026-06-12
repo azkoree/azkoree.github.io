@@ -6,7 +6,7 @@
   <link href="http://azkoree.github.io/atom.xml" rel="self"/>
   
   <link href="http://azkoree.github.io/"/>
-  <updated>2026-06-12T05:56:34.714Z</updated>
+  <updated>2026-06-12T07:01:49.072Z</updated>
   <id>http://azkoree.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>我做了一个读取rmmz插件参数的工具...</title>
+    <link href="http://azkoree.github.io/posts/1234358782/"/>
+    <id>http://azkoree.github.io/posts/1234358782/</id>
+    <published>2026-06-12T06:13:48.000Z</published>
+    <updated>2026-06-12T07:01:49.072Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><div class="note warning modern"><p>vibe-coding警告</p></div><p>众所周知，我最近开始自己本地化一些插件，而直接打开代码翻译又有这种各样的麻烦，虽然试过让ai帮我翻，但是总有些莫名其妙的问题</p><p>所以我鞭策ai写了个这个工具。。</p><p><a href="https://github.com/azkoree/plugin-desc-editor">仓库地址</a></p><p><img src="https://img.57hmpg.top/file/1781246706474_image-20260612144452938.png"></p><p>可以将左边作为对照，再右边输入翻译，并将注释文本进行导出，需要手动插入到插件中。</p><h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>直接下载本仓库所有文件，放在一个文件夹中，运行index.html，或者点击右面的github-page直接使用。（以后会考虑绑域名）</p><h2 id="功能介绍"><a href="#功能介绍" class="headerlink" title="功能介绍"></a>功能介绍</h2><p>先说可能大部分人比较关心的事</p><h3 id="MV的兼容性"><a href="#MV的兼容性" class="headerlink" title="MV的兼容性"></a>MV的兼容性</h3><p>本插件不支持修改@param，而是会加入一个便于显示文本的@text（这也是我弄这个工具的原因之一），而MV似乎并不支持@text，我不太清楚，因为我现在不用MV，所以以后可能做一个开关之类的，不过现在是不会做的。。</p><h3 id="检测并分离多语言注释"><a href="#检测并分离多语言注释" class="headerlink" title="检测并分离多语言注释"></a>检测并分离多语言注释</h3><p>mz支持多语言注释，有些插件也自带了多语言注释，本工具可以分开多语言注释，方便选择自己擅长的语言进行翻译。</p><h3 id="自动加入-text"><a href="#自动加入-text" class="headerlink" title="自动加入@text"></a>自动加入@text</h3><p>这个功能最前面也说了，有些作者（没有指责这些作者的意思）习惯直接使用@param和@arg来直接作为插件名称，而这些不能乱改。本工具会检测参数是否含有@text，如果没有则会自动加上一行</p><h3 id="翻译进度保存-载入功能"><a href="#翻译进度保存-载入功能" class="headerlink" title="翻译进度保存&#x2F;载入功能"></a>翻译进度保存&#x2F;载入功能</h3><p>翻译进行到一半时，可以通过顶部的“保存进度”来导出当前进度的json文件，然后通过“读取进度”来读取json文件，继续翻译。</p><h3 id="导出翻译"><a href="#导出翻译" class="headerlink" title="导出翻译"></a>导出翻译</h3><p><img src="https://img.57hmpg.top/file/1781246987038_%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE_2026-06-12_135948.png"></p><p>（配图为旧版）</p><p>可以直接预览翻译后的文本，可以选择复制粘贴到插件中，也可以下载txt。但是如果注释自带多语言，它会把两个语言一起导出，需要自己删一下。。</p><h2 id="利用规约"><a href="#利用规约" class="headerlink" title="利用规约"></a>利用规约</h2><p>可随意修改、分发，商用&#x2F;成人向皆OK</p><p>本工具为vibe-coding的免费工具，不授权任何倒卖行为！</p><h2 id="免责声明"><a href="#免责声明" class="headerlink" title="免责声明"></a>免责声明</h2><p><strong>本工具的开发只为方便RM用户进行插件本地化，构建RM插件良好生态</strong></p><p><strong>本工具不会直接修改原本插件，只读取插件注释并导出文本文件，需要用户自己手动插入到文件中</strong></p><p><strong>一切使用本工具而产生的违规、侵权行为，作者概不负责！</strong></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;div class=&quot;n</summary>
+      
+    
+    
+    
+    
+    <category term="游戏开发" scheme="http://azkoree.github.io/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"/>
+    
+    <category term="RMMZ" scheme="http://azkoree.github.io/tags/RMMZ/"/>
+    
+    <category term="小玩意" scheme="http://azkoree.github.io/tags/%E5%B0%8F%E7%8E%A9%E6%84%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>关于本博客的后续发展方向</title>
@@ -43,7 +69,7 @@
     <link href="http://azkoree.github.io/posts/1740828661/"/>
     <id>http://azkoree.github.io/posts/1740828661/</id>
     <published>2026-06-11T10:26:12.000Z</published>
-    <updated>2026-06-12T05:50:18.843Z</updated>
+    <updated>2026-06-12T06:14:26.646Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>刚吐槽完十几年的论坛数据说丢就丢，日本公司脑子有病，然后就看到官方出了一个插件搜索工具，<a href="https://rpgmakerofficial.com/product/plugin-finder/">Plugin Finder</a></p><p><img src="https://img.57hmpg.top/file/1781173671183_image-20260611182734947.png"></p><p>就是网页端的这么个东西</p><p>可以直接在这搜索github上发布的mvmz插件，都遵循MIT协议。</p><p><img src="https://img.57hmpg.top/file/1781173714037_image-20260611182825196.png"></p><p>有一说一，感觉不如。。。<a href="https://plugin-mz.fungamemake.com/">fungamemake</a>。。。</p><p>所以我用不上这功能，我比较关心的是自动翻译的功能，可以直接拖本地的插件上去翻译，于是我用<a href="https://woodpenguin.web.fc2.com/MV_Plugin/MessageEX.html">文章の表示拡張 | ペンギンの寝床</a>试了一下</p><p>可以选择翻译引擎</p><p><img src="https://img.57hmpg.top/file/1781173956313_image-20260611183230487.png"></p><p>好像对大陆用户不是很友好啊。。</p><p>先用谷歌翻译试一下吧，网页内置了一些术语词典，至于内置的词典是什么嘛</p><p><img src="https://img.57hmpg.top/file/1781174063516_image-20260611183415178.png"></p><p>不是，我中文呢？？？</p><p>先凑合翻译一下吧，等了几分钟后得到了这样的东西</p><p><img src="https://img.57hmpg.top/file/1781174125633_%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE_2026-06-11_175804.png"></p><p>尼玛控制符都没了，这是人类能翻译出的东西？？？？？</p><h2 id="省流"><a href="#省流" class="headerlink" title="省流"></a>省流</h2><p>可能也就插件搜索适合新人用，除非等后续更新接国内ai，真是食之无味弃之可惜的东西，不如做个快速导出注释部分方便翻译的工具。看来我那个仓库还有自己存在的价值。。。</p><p>就算只是想搜插件，我也还是推荐fungamemake，不过好像不挂梯子上不去就是了</p>]]></content>
     
@@ -57,6 +83,8 @@
     
     
     <category term="游戏开发" scheme="http://azkoree.github.io/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"/>
+    
+    <category term="小玩意" scheme="http://azkoree.github.io/tags/%E5%B0%8F%E7%8E%A9%E6%84%8F/"/>
     
     <category term="RM系列" scheme="http://azkoree.github.io/tags/RM%E7%B3%BB%E5%88%97/"/>
     
